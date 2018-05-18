@@ -9,6 +9,7 @@
 	<name>Attestation Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
