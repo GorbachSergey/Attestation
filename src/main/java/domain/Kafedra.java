@@ -27,9 +27,9 @@ public class Kafedra implements Serializable, IEntity {
 
 	private String name;
 
-	private int phone;
+	private String phone;
 
-	public Kafedra(String name, int phone, Faculty faculty) {
+	public Kafedra(String name, String phone, Faculty faculty) {
 		super();
 		this.name = name;
 		this.phone = phone;
@@ -64,11 +64,11 @@ public class Kafedra implements Serializable, IEntity {
 		this.name = name;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -107,7 +107,7 @@ public class Kafedra implements Serializable, IEntity {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + phone;
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		return result;
 	}
 
@@ -125,7 +125,10 @@ public class Kafedra implements Serializable, IEntity {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (phone != other.phone)
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
 			return false;
 		return true;
 	}
