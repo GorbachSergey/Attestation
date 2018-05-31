@@ -4,11 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 @NamedQuery(name = "Institut.findAll", query = "SELECT i FROM Institut i ORDER BY i.id")
@@ -21,8 +23,11 @@ public class Institut implements Serializable, IEntity {
 
 	private String name;
 
+	@Transient
+	private final String tableName = "Institut";
+
 	// bi-directional many-to-one association to Faculty
-	@OneToMany(mappedBy = "institut")
+	@OneToMany(mappedBy = "institut", fetch = FetchType.EAGER)
 	private List<Faculty> faculties;
 
 	public Institut(String name) {
@@ -46,6 +51,10 @@ public class Institut implements Serializable, IEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getTableName() {
+		return tableName;
 	}
 
 	public List<Faculty> getFaculties() {
@@ -93,6 +102,11 @@ public class Institut implements Serializable, IEntity {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  * The persistent class for the faculty database table.
@@ -20,7 +22,8 @@ import javax.persistence.OneToMany;
 @NamedQuery(name = "Faculty.findAll", query = "SELECT f FROM Faculty f ORDER BY f.id")
 public class Faculty implements Serializable, IEntity {
 	private static final long serialVersionUID = 1L;
-
+	@Transient
+	private final String tableName = "Faculty";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -43,7 +46,7 @@ public class Faculty implements Serializable, IEntity {
 	private List<Kafedra> kafedras;
 
 	// bi-directional many-to-one association to Specialty
-	@OneToMany(mappedBy = "faculty")
+	@OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
 	private List<Specialty> specialties;
 
 	public Faculty() {
@@ -71,6 +74,10 @@ public class Faculty implements Serializable, IEntity {
 
 	public void setInstitut(Institut institut) {
 		this.institut = institut;
+	}
+
+	public String getTableName() {
+		return tableName;
 	}
 
 	public List<Kafedra> getKafedras() {
@@ -140,6 +147,11 @@ public class Faculty implements Serializable, IEntity {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
 	}
 
 }

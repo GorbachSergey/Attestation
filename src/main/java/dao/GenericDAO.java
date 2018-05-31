@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -59,9 +60,9 @@ public class GenericDAO<T extends IEntity> implements IGenericDAO<T> {
 	public List<T> getAll() {
 		List<T> lst = new ArrayList<T>();
 		try {
-
 			CriteriaQuery<T> cq = session.getCriteriaBuilder().createQuery(cls);
-			cq.from(cls);
+			Root<T> root = cq.from(cls);
+			cq.select(root);
 			lst = session.createQuery(cq).getResultList();
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -82,15 +83,11 @@ public class GenericDAO<T extends IEntity> implements IGenericDAO<T> {
 		}
 	}
 
-	// private boolean exist(T obj) {
-	// Class<?> clazz = obj.getClass();
-	// List<?> list = getObjectList(clazz);
-	// if (list != null && list.size() != 0)
-	// for (Object current : list)
-	// if (current.equals(obj))
-	// return true;
-	// return false;
-	// }
+	/*
+	 * private boolean exist(T obj) { Class<?> clazz = obj.getClass(); List<?> list
+	 * = getObjectList(clazz); if (list != null && list.size() != 0) for (Object
+	 * current : list) if (current.equals(obj)) return true; return false; }
+	 */
 
 	public void openSession() {
 		session = HibernateUtil.getSessionFactory().openSession();

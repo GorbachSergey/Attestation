@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  * The persistent class for the groups database table.
@@ -30,6 +31,9 @@ public class Group implements Serializable, IEntity {
 	private int course;
 
 	private String name;
+
+	@Transient
+	private final String tableName = "Group";
 
 	public Group(String name, int course, Specialty specialty) {
 		super();
@@ -72,6 +76,10 @@ public class Group implements Serializable, IEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getTableName() {
+		return tableName;
 	}
 
 	public Specialty getSpecialty() {
@@ -130,6 +138,11 @@ public class Group implements Serializable, IEntity {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
 	}
 
 }
