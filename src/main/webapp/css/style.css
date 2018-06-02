@@ -2,12 +2,25 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato|Raleway');
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
 body {
 	background-color: #f2f2f2;
 	font-family: "Lato";
 	font-weight: 300;
 	font-size: 16px;
 	color: #555;
+}
+
+.content {
+	padding-bottom: 40px;
 }
 
 #header {
@@ -20,25 +33,6 @@ body {
 	background: url(../images/header.png) repeat-x center bottom;
 }
 
-.content {
-	width: 860px;
-	margin: auto;
-	background: white;
-}
-
-.content-white {
-	background: #fff; 
-	margin: 0 11px; 
-	padding: 20px 40px; 
-	text-align: justify; 
-}
-
-.button{
-	display:block;
-/* 	cursor:pointer; */
-	
-}
-
 #menu {
 	width: 100%;
 	height: 10px;
@@ -48,20 +42,36 @@ body {
 }
 
 #footer {
-	width: 100%;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	padding: 10px;
+	margin-top: -40px;
+	height: 40px;
 	background: #00528E;
-	color: #fff;
+	padding: 10px;
+	color: white;
 }
 
 #loginForm {
 	width: 400px;
-	padding: 50px;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	margin: auto;
+}
+
+img {
+	width: 200px;
+	height: 200px;
+	border: none;
+}
+
+#p1 {
+	width: 200px;
+	text-align: center;
+}
+
+button {
+	color: black;
+	border: none;
+	margin: 10px;
+	cursor: pointer;
+}
+
+.wrap {
+	min-height: 100%;
 }

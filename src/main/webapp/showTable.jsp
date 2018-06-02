@@ -13,22 +13,23 @@
 <title>Інститут</title>
 </head>
 <body>
-	<div id="header"></div>
+	<div class="wrap">
+		<div id="header"></div>
+		<div class=content>
+			<form action="SelectTableServlet" method="POST">
+				<c:forEach var="elem" items="${list}">
+					<button type="submit" value="${elem.tableName}|${elem.id}"
+						name="elemId">
+						<img alt="" src="images/dark-blue-folder.png">
+						<p id="p1">${elem}</p>
+					</button>
+				</c:forEach>
+			</form>
+		</div>
+	</div>
 
-	<!-- 	<div class="content"> -->
-	<!-- 		<div class="content-white"> -->
-
-	<form action="SelectTableServlet" method="POST">
-
-		<c:forEach var="elem" items="${list}">
-
-			<button type="submit" value="${elem.tableName}|${elem.id}" name="elemId">${elem}</button>
-
-		</c:forEach>
-
-	</form>
-
-	<!-- 		</div> -->
-	<!-- 	</div> -->
+	<div id="footer">
+		<jsp:include page="footer.jsp"></jsp:include>
+	</div>
 </body>
 </html>

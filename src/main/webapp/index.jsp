@@ -12,24 +12,26 @@
 <title>Атестація студентів</title>
 </head>
 <body>
+	<div class="wrap">
+		<div id="header"></div>
 
-	<div id="header"></div>
-	<div class="container" id="loginForm">
-		<form role="form" class="form-horizontal" action="LoginServlet"
-			method="POST">
-			<div class="form-group">
-				<input class="form-control" id="name" type="text"
-					placeholder="Логін" name="login" />
-			</div>
-			<div class="form-group ">
-				<input class="form-control" id="pass" type="password"
-					placeholder="Пароль" name="password" />
-			</div>
-			<div class="form-group ">
-				<input class="btn btn-success btn-block" id="login" type="submit"
-					value="Вхід" />
-			</div>
-		</form>
+		<div class=content>
+			<form role="form" id="loginForm" class="form-horizontal"
+				action="LoginServlet" method="POST">
+				<div class="form-group">
+					<input class="form-control" id="name" type="text"
+						placeholder="Логін" name="login" />
+				</div>
+				<div class="form-group ">
+					<input class="form-control" id="pass" type="password"
+						placeholder="Пароль" name="password" />
+				</div>
+				<div class="form-group ">
+					<input class="btn btn-success btn-block" id="login" type="submit"
+						value="Вхід" />
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<div id="footer">
