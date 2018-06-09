@@ -9,11 +9,13 @@ public class InstitutDAO extends GenericDAO<Institut> implements IInstitutDAO {
 		super(cls);
 	}
 
+	@Override
 	public Institut getIstitutByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
 	public void deleteInstituteByName(String name) {
 		// TODO Auto-generated method stub
 	}

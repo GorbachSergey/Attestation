@@ -12,15 +12,13 @@ html, body {
 }
 
 body {
-	background-color: #f2f2f2;
+	background-color: #ffffff;
 	font-family: "Lato";
 	font-weight: 300;
 	font-size: 16px;
-	color: #555;
-}
-
-.content {
-	padding-bottom: 40px;
+	color: #000000;
+	display: flex;
+	flex-direction: column;
 }
 
 #header {
@@ -31,6 +29,7 @@ body {
 	height: 96px;
 	margin-bottom: 10px;
 	background: url(../images/header.png) repeat-x center bottom;
+	flex-shrink: 0;
 }
 
 #menu {
@@ -41,20 +40,24 @@ body {
 	margin-bottom: 10px;
 }
 
+.content {
+	flex: 1 0 auto;
+}
+
 #footer {
-	margin-top: -40px;
-	height: 40px;
+	flex-shrink: 0;
 	background: #00528E;
 	padding: 10px;
 	color: white;
 }
 
 #loginForm {
-	width: 400px;
+	width: 350px;
 	margin: auto;
+	margin-top: 150px;
 }
 
-img {
+#folder {
 	width: 200px;
 	height: 200px;
 	border: none;
@@ -72,6 +75,48 @@ button {
 	cursor: pointer;
 }
 
-.wrap {
-	min-height: 100%;
+.buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-grow: 0;
+	flex-basis: 200px;
 }
+
+th {
+	text-align: center; 
+}
+
+.elem{
+	text-align:center;
+	width: 50px;
+	vertical-align: middle;
+}
+
+.elem input{
+	vertical-align: middle;
+	width:50px;
+	border:none;
+	text-align: center;
+}
+
+#save{
+	width: 40px;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#save button{
+	width: 40px;
+	padding:0px;
+	margin:0px;
+	background: white
+}
+
+#save-icon{
+	width: 32px;
+	height: 32px;
+	border: none;
+	background: white;
+}
+

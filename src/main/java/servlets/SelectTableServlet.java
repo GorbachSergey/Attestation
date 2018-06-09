@@ -1,7 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +16,18 @@ import dao.DAOFactory;
 import daoInterfaces.IFacultyDAO;
 import daoInterfaces.IGroupDAO;
 import daoInterfaces.IInstitutDAO;
+import daoInterfaces.IMarkDAO;
+import daoInterfaces.IStudentDAO;
+import daoInterfaces.ISubjectDAO;
 import domain.Course;
 import domain.Faculty;
 import domain.Group;
 import domain.Institut;
+import domain.Mark;
 import domain.Specialty;
+import domain.Student;
+import domain.Subject;
+import domain.Teacher;
 
 @WebServlet("/SelectTableServlet")
 public class SelectTableServlet extends HttpServlet {
@@ -57,6 +66,7 @@ public class SelectTableServlet extends HttpServlet {
 			request.setAttribute("list", courses);
 			break;
 		case "Course":
+			session.setAttribute("courseId", id);
 			int specId = (int) session.getAttribute("specId");
 			IGroupDAO groupDAO = factory.getGroupDAO();
 			groupDAO.openSession();
@@ -64,10 +74,40 @@ public class SelectTableServlet extends HttpServlet {
 			groupDAO.closeSession();
 			request.setAttribute("list", groups);
 			break;
-		default:
+		case "Group":
+			session.setAttribute("groupId", id);
+			Teacher t = (Teacher) session.getAttribute("user");
+			int spId = (int) session.getAttribute("specId");
+			int courseId = (int) session.getAttribute("courseId");
+			ISubjectDAO subDAO = factory.getSubjectDAO();
+			subDAO.openSession();
+			List<Subject> subjects = subDAO.getSubjectsBySpecCourseAndTeacher(t.getId(), spId, courseId);
+			subDAO.closeSession();
+			request.setAttribute("list", subjects);
+			break;
+		case "Subject":
+			session.setAttribute("subjectId", id);
+			Map<Student, Mark> map = new HashMap<>();
+			int groupId = (int) session.getAttribute("groupId");
+			IStudentDAO studentDAO = factory.getStudentDAO();
+			IMarkDAO markDAO = factory.getMarkDAO();
+			studentDAO.openSession();
+			List<Student> students = studentDAO.getStudentsByGroupId(groupId);
+			studentDAO.closeSession();
+			markDAO.openSession();
+			for (Student s : students) {
+				Mark m = markDAO.getMarkBySubjectAndStudent(id, s.getId());
+				map.put(s, m);
+			}
+			markDAO.closeSession();
+			request.setAttribute("list", map);
 			break;
 		}
-		request.getRequestDispatcher("showTable.jsp").forward(request, response);
+
+		if (tableName.equals("Subject")) {
+			request.getRequestDispatcher("showStudents.jsp").forward(request, response);
+		} else
+			request.getRequestDispatcher("showTable.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

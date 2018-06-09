@@ -9,12 +9,10 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<title>Атестація студентів</title>
+<title>ЧНТУ Атестація</title>
 </head>
 <body>
-	<div class="wrap">
 		<div id="header"></div>
-
 		<div class=content>
 			<form role="form" id="loginForm" class="form-horizontal"
 				action="LoginServlet" method="POST">
@@ -32,11 +30,10 @@
 				</div>
 			</form>
 		</div>
-	</div>
-
-	<div id="footer">
+		
+		<div id="footer">
 		<jsp:include page="footer.jsp"></jsp:include>
-	</div>
+		</div>
 
 </body>
 </html>

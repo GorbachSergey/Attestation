@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 /**
  * The persistent class for the subject database table.
@@ -29,6 +30,9 @@ public class Subject implements Serializable, IEntity {
 	private int course;
 
 	private int semester;
+
+	@Transient
+	private final String tableName = "Subject";
 
 	public Subject(int course, int semester, Subjectname subjectname, Specialty specialty) {
 		super();
@@ -57,6 +61,10 @@ public class Subject implements Serializable, IEntity {
 	private List<Teacher> teachers;
 
 	public Subject() {
+	}
+
+	public String getTableName() {
+		return tableName;
 	}
 
 	public int getId() {
@@ -161,6 +169,13 @@ public class Subject implements Serializable, IEntity {
 		} else if (!subjectname.equals(other.subjectname))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		if(this.subjectname.getShortName()!=null)
+		return this.subjectname.getFullName() + " (" + this.subjectname.getShortName() + ") ";
+		else return this.subjectname.getFullName();
 	}
 
 }

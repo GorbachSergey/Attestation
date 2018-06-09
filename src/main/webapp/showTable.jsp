@@ -10,24 +10,25 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/style.css" />
-<title>Інститут</title>
+<title>ЧНТУ Атестація</title>
 </head>
 <body>
-	<div class="wrap">
-		<div id="header"></div>
-		<div class=content>
-			<form action="SelectTableServlet" method="POST">
+	<div id="header"></div>
+	<div class=content>
+		<form action="SelectTableServlet" method="POST">
+			<div class="buttons">
 				<c:forEach var="elem" items="${list}">
-					<button type="submit" value="${elem.tableName}|${elem.id}"
-						name="elemId">
-						<img alt="" src="images/dark-blue-folder.png">
-						<p id="p1">${elem}</p>
-					</button>
+					<div>
+						<button type="submit" value="${elem.tableName}|${elem.id}"
+							name="elemId">
+							<img id="folder" alt="" src="images/dark-blue-folder.png">
+							<p id="p1">${elem}</p>
+						</button>
+					</div>
 				</c:forEach>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
-
 	<div id="footer">
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
