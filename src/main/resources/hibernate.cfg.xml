@@ -20,7 +20,6 @@
 		<mapping class="domain.Mark" />
 		<mapping class="domain.Student" />
 		<mapping class="domain.Subject" />
-		<mapping class="domain.Subjectname" />
 		<mapping class="domain.Teacher" />
 	</session-factory>
 </hibernate-configuration>

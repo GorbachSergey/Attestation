@@ -26,7 +26,6 @@ public class SubjectDAO extends GenericDAO<Subject> implements ISubjectDAO {
 			t.commit();
 		} catch (HibernateException | NoResultException e) {
 			t.rollback();
-			return null;
 		}
 		return lst;
 	}

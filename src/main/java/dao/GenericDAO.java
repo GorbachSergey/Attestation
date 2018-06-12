@@ -23,6 +23,8 @@ public class GenericDAO<T extends IEntity> implements IGenericDAO<T> {
 	}
 
 	public void save(T item) {
+		if (exist(item))
+			return;
 		Transaction t = null;
 		try {
 			t = session.beginTransaction();
@@ -83,11 +85,14 @@ public class GenericDAO<T extends IEntity> implements IGenericDAO<T> {
 		}
 	}
 
-	/*
-	 * private boolean exist(T obj) { Class<?> clazz = obj.getClass(); List<?> list
-	 * = getObjectList(clazz); if (list != null && list.size() != 0) for (Object
-	 * current : list) if (current.equals(obj)) return true; return false; }
-	 */
+	private boolean exist(T obj) {
+		List<?> list = getAll();
+		if (list != null && list.size() != 0)
+			for (Object current : list)
+				if (current.equals(obj))
+					return true;
+		return false;
+	}
 
 	public void openSession() {
 		session = HibernateUtil.getSessionFactory().openSession();

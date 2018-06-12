@@ -1,9 +1,9 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,7 +62,7 @@ public class SelectTableServlet extends HttpServlet {
 			break;
 		case "Specialty":
 			session.setAttribute("specId", id);
-			List<Course> courses = Course.getCources();
+			List<Course> courses = Course.getCourses();
 			request.setAttribute("list", courses);
 			break;
 		case "Course":
@@ -87,7 +87,7 @@ public class SelectTableServlet extends HttpServlet {
 			break;
 		case "Subject":
 			session.setAttribute("subjectId", id);
-			Map<Student, Mark> map = new HashMap<>();
+			SortedMap<Student, Mark> map = new TreeMap<>();
 			int groupId = (int) session.getAttribute("groupId");
 			IStudentDAO studentDAO = factory.getStudentDAO();
 			IMarkDAO markDAO = factory.getMarkDAO();

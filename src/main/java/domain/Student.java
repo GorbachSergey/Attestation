@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
  */
 @Entity
 @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s")
-public class Student implements Serializable, IEntity {
+public class Student implements Serializable, IEntity, Comparable<Student> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -31,11 +31,9 @@ public class Student implements Serializable, IEntity {
 
 	private String middleName;
 
-	// bi-directional many-to-one association to Mark
 	@OneToMany(mappedBy = "student")
 	private List<Mark> marks;
 
-	// bi-directional many-to-one association to Group
 	@ManyToOne
 	@JoinColumn(name = "groupID")
 	private Group group;
@@ -148,6 +146,11 @@ public class Student implements Serializable, IEntity {
 		} else if (!middleName.equals(other.middleName))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Student o) {
+		return this.getLastName().compareTo(o.getLastName());
 	}
 
 }

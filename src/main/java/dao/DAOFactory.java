@@ -9,7 +9,6 @@ import daoInterfaces.IMarkDAO;
 import daoInterfaces.ISpecialtyDAO;
 import daoInterfaces.IStudentDAO;
 import daoInterfaces.ISubjectDAO;
-import daoInterfaces.ISubjectNameDAO;
 import daoInterfaces.ITeacherDAO;
 import domain.Faculty;
 import domain.Group;
@@ -19,7 +18,6 @@ import domain.Mark;
 import domain.Specialty;
 import domain.Student;
 import domain.Subject;
-import domain.Subjectname;
 import domain.Teacher;
 
 public class DAOFactory implements IDAOFactory {
@@ -54,10 +52,6 @@ public class DAOFactory implements IDAOFactory {
 
 	public ISubjectDAO getSubjectDAO() {
 		return new SubjectDAO(Subject.class);
-	}
-
-	public ISubjectNameDAO getSubjectNameDAO() {
-		return new SubjectNameDAO(Subjectname.class);
 	}
 
 	public ITeacherDAO getTeacherDAO() {

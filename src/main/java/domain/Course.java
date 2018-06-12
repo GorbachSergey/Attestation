@@ -14,12 +14,14 @@ public class Course {
 		this.name = name;
 	}
 
-	public static List<Course> getCources() {
+	public static List<Course> getCourses() {
 		List<Course> lst = new ArrayList<>();
 		for (int i = 1; i <= 4; i++) {
 			Course c = new Course(i, String.valueOf(i) + " курс");
 			lst.add(c);
 		}
+		Course m = new Course(5, "Магістри");
+		lst.add(m);
 		return lst;
 	}
 

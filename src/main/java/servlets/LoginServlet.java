@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("list", instituts);
 			request.getRequestDispatcher("showTable.jsp").forward(request, response);
 		} else {
-			request.setAttribute("error", "Логін або пароль введено не вірно! Спробуйте ще раз.");
+			request.setAttribute("loginError", "Логін або пароль введено не вірно! Спробуйте ще раз.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}

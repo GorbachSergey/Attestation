@@ -16,8 +16,6 @@ public interface IDAOFactory {
 
 	public ISubjectDAO getSubjectDAO();
 
-	public ISubjectNameDAO getSubjectNameDAO();
-
 	public ITeacherDAO getTeacherDAO();
 
 	public IKafedraDAO getKafedraDAO();

@@ -21,7 +21,7 @@ public class GroupDAO extends GenericDAO<Group> implements IGroupDAO {
 		Transaction t = null;
 		try {
 			t = session.beginTransaction();
-			lst = session.createNativeQuery("SELECT * FROM groups WHERE course =" + id + "  AND specialtyID =" + spec, Group.class).getResultList();
+			lst = session.createNativeQuery("SELECT * FROM groups WHERE course =" + id + "  AND specialtyID =" + spec + " ORDER BY groups.name", Group.class).getResultList();
 			t.commit();
 		} catch (HibernateException | NoResultException e) {
 			t.rollback();
