@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 			institutDAO.closeSession();
 			session.setAttribute("user", user);
 			request.setAttribute("list", instituts);
-			request.getRequestDispatcher("showTable.jsp").forward(request, response);
+			request.getRequestDispatcher("private/showTable.jsp").forward(request, response);
 		} else {
 			request.setAttribute("loginError", "Логін або пароль введено не вірно! Спробуйте ще раз.");
 			request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -14,7 +14,9 @@
 <title>ЧНТУ Атестація</title>
 </head>
 <body>
-	<div id="header"></div>
+	<div id="header">
+		<jsp:include page="../header.jsp"></jsp:include>
+	</div>
 	<div class=content>
 		<form action="SelectTableServlet" method="POST">
 			<c:forEach var="elem" items="${list}">
@@ -27,20 +29,20 @@
 			</c:forEach>
 		</form>
 		<c:if test="${user.lastName eq 'admin'}">
-		<form action="SelectTableForEditServlet" method="POST">
-		<input type="hidden" name="tableName" value="${list[0].tableName}"/>
-		<input type="hidden" name="id" value="${list[0].id}"/>
-			<div>
-				<button class="buttonEdit" style="vertical-align: middle"
-					name="edit" >
-					<span>Редагувати таблицю</span>
-				</button>
-			</div>
+			<form action="SelectTableForEditServlet" method="POST">
+				<input type="hidden" name="tableName" value="${list[0].tableName}" />
+				<input type="hidden" name="id" value="${list[0].id}" />
+				<div>
+					<button class="buttonEdit" style="vertical-align: middle"
+						name="edit">
+						<span>Редагувати таблицю</span>
+					</button>
+				</div>
 			</form>
 		</c:if>
 	</div>
 	<div id="footer">
-		<jsp:include page="footer.jsp"></jsp:include>
+		<jsp:include page="../footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>

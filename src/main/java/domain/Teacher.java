@@ -160,4 +160,12 @@ public class Teacher implements Serializable, IEntity {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		if (this.firstName.equals("admin"))
+			return "Admin";
+		else
+			return this.lastName + " " + this.firstName.substring(0, 1) + ". " + this.middleName.substring(0, 1) + ".";
+	}
+
 }

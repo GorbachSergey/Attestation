@@ -17,16 +17,14 @@
 </head>
 <body>
 	<div id="header"></div>
-
 	<div class=content>
-		<h3>Факультет</h3>
+		<h3>Інститут</h3>
 		<form action="ExecuteOperationServlet" method="POST">
 			<input type="hidden" name="tableName" value="${lst[0].tableName}" />
 			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Назва</th>
-						<th>Інститут</th>
 						<th colspan="2">Операції</th>
 					</tr>
 				</thead>
@@ -34,15 +32,7 @@
 					<c:forEach var="elem" items="${lst}">
 						<tr>
 							<td class="elem1"><input type="text" class="input"
-								name="nameFac${elem.id}" value="${elem.name}" /></td>
-							<td class="elem1"><select size="1" id="ins"
-								name="nameIns${elem.id}">
-									<c:forEach var="inst" items="${lst1}">
-										<option value="${inst.id}">${inst.name}</option>
-									</c:forEach>
-							</select> </td>
-							<%-- <td class="elem1"><input type="text" class="input"
-								name="nameIns${elem.id}" value="${elem.institut}" /></td> --%>
+								name="nameIns${elem.id}" value="${elem.name}" /></td>
 							<td id="save"><button title="Оновити" value="${elem.id}"
 									type="submit" name="edit" class="but">
 									<img id="save-icon" alt="" src="images/update.png">
@@ -55,8 +45,6 @@
 					</c:forEach>
 					<tr>
 						<td class="add"><input type="text" class="input"
-							name="nameFac" /></td>
-						<td class="add"><input type="text" class="input"
 							name="nameIns" /></td>
 						<td colspan="2" id="save"><button class="but" title="Додати"
 								type="submit" name="add">
@@ -68,7 +56,7 @@
 		</form>
 	</div>
 	<div id="footer">
-		<jsp:include page="footer.jsp"></jsp:include>
+		<jsp:include page="../footer.jsp"></jsp:include>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -79,10 +67,8 @@
 					for (var i = 0; i < q.length; i++) {
 						q[i].removeAttribute('required');
 					}
-					var a = document.getElementsByName("nameFac" + this.value);
-					var b = document.getElementsByName("nameIns" + this.value);
+					var a = document.getElementsByName("nameIns" + this.value);
 					a[0].setAttribute('required', 'true');
-					b[0].setAttribute('required', 'true');
 				}
 			}
 		});

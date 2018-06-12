@@ -9,25 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.DAOFactory;
-import util.ShowTable;
-
-@WebServlet("/SelectTableForEditServlet")
-public class SelectTableForEditServlet extends HttpServlet {
+@WebServlet("/LogoutServlet")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public SelectTableForEditServlet() {
+	public LogoutServlet() {
 		super();
 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String tableName = request.getParameter("tableName");
 		HttpSession session = request.getSession();
-		DAOFactory factory = new DAOFactory();
-		ShowTable.show(request, tableName, factory);
-
-		request.getRequestDispatcher("private/edit" + tableName + ".jsp").forward(request, response);
+		session.invalidate();
+		response.sendRedirect("index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

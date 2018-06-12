@@ -105,9 +105,9 @@ public class SelectTableServlet extends HttpServlet {
 		}
 
 		if (tableName.equals("Subject")) {
-			request.getRequestDispatcher("showStudents.jsp").forward(request, response);
+			request.getRequestDispatcher("private/showStudents.jsp").forward(request, response);
 		} else
-			request.getRequestDispatcher("showTable.jsp").forward(request, response);
+			request.getRequestDispatcher("private/showTable.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

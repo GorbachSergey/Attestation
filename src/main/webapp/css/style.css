@@ -62,12 +62,6 @@ body {
 	margin-top: 130px;
 }
 
-#folder {
-	width: 150px;
-	height: 150px;
-	border: none;
-}
-
 button {
 	color: black;
 	border: 1px solid black;
@@ -93,21 +87,39 @@ th {
 	text-align: center;
 }
 
-.elem1 {
+.elem1,.elem2 {
 	vertical-align: middle;
 }
 
-.elem1 input {
+.elem1 input,.elem2 input {
 	vertical-align: middle;
-	width: 400px;
 	border: none;
+}
+.elem1 input{
+	width: 400px;
+}
+.elem2 input{
+	width: 250px;
+}
+.elem2{
+	width: 250px;
+}
+.add input,.add1 input,.add2 input{
+	vertical-align: middle;
+	border:1px solid #0485d2;
+	border-radius: 1px;
 }
 
 .add input{
-	vertical-align: middle;
 	width: 400px;
-	border:1px solid #0485d2;
-	border-radius: 1px;
+}
+
+.add1 input{
+	width: 50px;
+}
+
+.add2 input{
+	width: 250px;
 }
 
 #save {
@@ -207,4 +219,28 @@ h3{
 	margin:auto;
 	text-align: center;
 	margin-bottom: 10px;
+}
+
+.logout-img{
+	background: #00528E;
+	width: 36px;
+	height: 36px;
+}
+
+.logoutForm{
+	float: right;
+	margin-top:15px;
+	margin-right: 20px;
+}
+
+.logout-btn{
+	border:none;
+}
+
+.user{
+	font-family: "Comic Sans MS" cursive;
+	font-size: 22px;
+	color: #000000;
+	margin-right: 5px;
+	margin-top: 5px;
 }
