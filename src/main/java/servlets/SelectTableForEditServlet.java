@@ -27,7 +27,7 @@ public class SelectTableForEditServlet extends HttpServlet {
 		DAOFactory factory = new DAOFactory();
 		ShowTable.show(request, tableName, factory);
 
-		request.getRequestDispatcher("private/edit" + tableName + ".jsp").forward(request, response);
+		request.getRequestDispatcher("edit" + tableName + ".jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

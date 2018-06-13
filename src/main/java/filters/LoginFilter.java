@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("private/*")
+@WebFilter(urlPatterns = { "/SelectTableServlet", "/SelectTableForEditServlet", "/ExecuteOperationServlet", "/AddMarkServlet" })
 public class LoginFilter implements Filter {
 
 	public LoginFilter() {

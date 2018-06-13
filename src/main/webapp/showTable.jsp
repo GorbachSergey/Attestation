@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="header">
-		<jsp:include page="../header.jsp"></jsp:include>
+		<jsp:include page="header.jsp"></jsp:include>
 	</div>
 	<div class=content>
 		<form action="SelectTableServlet" method="POST">
@@ -42,7 +42,7 @@
 		</c:if>
 	</div>
 	<div id="footer">
-		<jsp:include page="../footer.jsp"></jsp:include>
+		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 </body>
 </html>

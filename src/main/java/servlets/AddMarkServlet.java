@@ -80,7 +80,7 @@ public class AddMarkServlet extends HttpServlet {
 		}
 		markDAO.closeSession();
 		request.setAttribute("list", map);
-		request.getRequestDispatcher("private/showStudents.jsp").forward(request, response);
+		request.getRequestDispatcher("showStudents.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

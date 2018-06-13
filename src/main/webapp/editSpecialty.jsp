@@ -72,7 +72,7 @@
 		</form>
 	</div>
 	<div id="footer">
-		<jsp:include page="../footer.jsp"></jsp:include>
+		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
