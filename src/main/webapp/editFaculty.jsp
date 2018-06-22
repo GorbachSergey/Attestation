@@ -16,12 +16,14 @@
 <title>Редагувати</title>
 </head>
 <body>
-	<div id="header"></div>
+	<div id="header">
+		<jsp:include page="header.jsp"></jsp:include>
+	</div>
 
 	<div class=content>
 		<h3>Факультет</h3>
 		<form action="ExecuteOperationServlet" method="POST">
-			<input type="hidden" name="tableName" value="${lst[0].tableName}" />
+			<input type="hidden" name="tableName" value="${tableName}" />
 			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
@@ -54,8 +56,8 @@
 					<tr>
 						<td class="add"><input type="text" class="input"
 							name="nameFac" /></td>
-						<td><input type="hidden" value="${lst[0].institut.id}"
-							name="nameIns" />${lst[0].institut}</td>
+						<td><input type="hidden" value="${id}"
+							name="nameIns" />${name}</td>
 						<td colspan="2" id="save"><button class="but" title="Додати"
 								type="submit" name="add">
 								<img id="save-icon" alt="" src="images/add.png">
@@ -63,7 +65,13 @@
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" value="${lst[0].id}" name="id" />
+			<input type="hidden" value="${id}" name="id" />
+		</form>
+	</div>
+		<div class="back">
+		<form action="BackServlet">
+			<button type="submit" name="back" value="Institut"
+				class="btn btn-primary">На головну</button>
 		</form>
 	</div>
 	<div id="footer">

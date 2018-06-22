@@ -36,12 +36,10 @@ public class Kafedra implements Serializable, IEntity {
 		this.faculty = faculty;
 	}
 
-	// bi-directional many-to-one association to Faculty
 	@ManyToOne
 	@JoinColumn(name = "facultyID")
 	private Faculty faculty;
 
-	// bi-directional many-to-one association to Teacher
 	@OneToMany(mappedBy = "kafedra")
 	private List<Teacher> teachers;
 

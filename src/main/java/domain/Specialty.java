@@ -13,10 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-/**
- * The persistent class for the specialty database table.
- * 
- */
 @Entity
 @NamedQuery(name = "Specialty.findAll", query = "SELECT s FROM Specialty s")
 public class Specialty implements Serializable, IEntity {
@@ -38,16 +34,13 @@ public class Specialty implements Serializable, IEntity {
 		this.faculty = faculty;
 	}
 
-	// bi-directional many-to-one association to Group
 	@OneToMany(mappedBy = "specialty")
 	private List<Group> groups;
 
-	// bi-directional many-to-one association to Faculty
 	@ManyToOne
 	@JoinColumn(name = "facultyID")
 	private Faculty faculty;
 
-	// bi-directional many-to-one association to Subject
 	@OneToMany(mappedBy = "specialty")
 	private List<Subject> subjects;
 

@@ -10,10 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
-/**
- * The persistent class for the mark database table.
- * 
- */
 @Entity
 @NamedQuery(name = "Mark.findAll", query = "SELECT m FROM Mark m")
 public class Mark implements Serializable, IEntity {
@@ -35,12 +31,10 @@ public class Mark implements Serializable, IEntity {
 		this.student = student;
 	}
 
-	// bi-directional many-to-one association to Subject
 	@ManyToOne
 	@JoinColumn(name = "subjectID")
 	private Subject subject;
 
-	// bi-directional many-to-one association to Student
 	@ManyToOne
 	@JoinColumn(name = "studentID")
 	private Student student;

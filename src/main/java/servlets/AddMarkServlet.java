@@ -31,7 +31,7 @@ public class AddMarkServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		DAOFactory factory = new DAOFactory();
+		DAOFactory factory = (DAOFactory) session.getAttribute("factory");
 		int subjectId = (int) session.getAttribute("subjectId");
 		IMarkDAO markDAO = factory.getMarkDAO();
 		IStudentDAO studentDAO = factory.getStudentDAO();
@@ -86,5 +86,4 @@ public class AddMarkServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

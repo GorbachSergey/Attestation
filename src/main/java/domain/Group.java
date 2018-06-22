@@ -14,10 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-/**
- * The persistent class for the groups database table.
- * 
- */
 @Entity
 @Table(name = "groups")
 @NamedQuery(name = "Group.findAll", query = "SELECT g FROM Group g ORDER BY g.id")
@@ -42,12 +38,10 @@ public class Group implements Serializable, IEntity {
 		this.specialty = specialty;
 	}
 
-	// bi-directional many-to-one association to Specialty
 	@ManyToOne
 	@JoinColumn(name = "specialtyID")
 	private Specialty specialty;
 
-	// bi-directional many-to-one association to Student
 	@OneToMany(mappedBy = "group")
 	private List<Student> students;
 
@@ -144,5 +138,4 @@ public class Group implements Serializable, IEntity {
 	public String toString() {
 		return this.name;
 	}
-
 }

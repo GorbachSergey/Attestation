@@ -13,10 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
-/**
- * The persistent class for the teacher database table.
- * 
- */
 @Entity
 @NamedQuery(name = "Teacher.findAll", query = "SELECT t FROM Teacher t")
 public class Teacher implements Serializable, IEntity {
@@ -129,7 +125,9 @@ public class Teacher implements Serializable, IEntity {
 		int result = 1;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
 
@@ -152,10 +150,20 @@ public class Teacher implements Serializable, IEntity {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (login == null) {
+			if (other.login != null)
+				return false;
+		} else if (!login.equals(other.login))
+			return false;
 		if (middleName == null) {
 			if (other.middleName != null)
 				return false;
 		} else if (!middleName.equals(other.middleName))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
 			return false;
 		return true;
 	}

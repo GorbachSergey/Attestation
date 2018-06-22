@@ -21,29 +21,29 @@
 	</div>
 
 	<div class=content>
-		<h3>Спеціальність</h3>
+		<h3>Група</h3>
 		<form action="ExecuteOperationServlet" method="POST">
 			<input type="hidden" name="tableName" value="${tableName}" />
 			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Назва</th>
-						<th>Код</th>
-						<th>Факультет</th>
+						<th>Курс</th>
+						<th>Спеціальність</th>
 						<th colspan="2">Операції</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="elem" items="${lst}">
 						<tr>
-							<td class="elem2"><input type="text" class="input"
-								name="nameSpec${elem.id}" value="${elem.name}" /></td>
-							<td class="elem"><input type="text" class="input"
-								name="codeSpec${elem.id}" value="${elem.code}" /></td>
+							<td class="elem3"><input type="text" class="input"
+								name="nameGroup${elem.id}" value="${elem.name}" /></td>
+							<td class="elem"><input type="hidden" class="input" value ="${elem.course}"
+							name="course" />${elem.course}</td>
 							<td class="elem1"><select size="1" id="ins"
-								name="nameFac${elem.id}">
-									<c:forEach var="fac" items="${lst1}">
-										<option value="${fac.id}">${fac.name}</option>
+								name="nameSpec${elem.id}">
+									<c:forEach var="spec" items="${lst1}">
+										<option value="${spec.id}">${spec}</option>
 									</c:forEach>
 							</select></td>
 							<td id="save"><button title="Оновити" value="${elem.id}"
@@ -57,12 +57,12 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td class="add2"><input type="text" class="input"
-							name="nameSpec" /></td>
-						<td class="add1"><input type="text" class="input"
-							name="codeSpec" /></td>
-						<td><input type="hidden" value="${id}"
-							name="nameFac" />${name}</td>
+						<td class="add3"><input type="text" class="input"
+							name="nameGroup" /></td>
+						<td class="elem"><input type="hidden" class="input" value ="${courseId}"
+							name="courseGroup" />${courseId}</td>
+						<td><input type="hidden" value="${specId}"
+							name="nameSpec" />${name}</td>
 						<td colspan="2" id="save"><button class="but" title="Додати"
 								type="submit" name="add">
 								<img id="save-icon" alt="" src="images/add.png">
@@ -91,12 +91,13 @@
 					for (var i = 0; i < q.length; i++) {
 						q[i].removeAttribute('required');
 					}
-					var a = document.getElementsByName("nameSpec" + this.value);
+					var a = document.getElementsByName("nameGroup" + this.value);
 					a[0].setAttribute('required', 'true');
+					
 				}
 			}
 
-			var text1 = '${lst[0].faculty}';
+			var text1 = '${lst[0].specialty}';
 			$("select option").filter(function() {
 				return $(this).text() == text1;
 			}).attr('selected', true);

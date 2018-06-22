@@ -21,14 +21,14 @@
 	</div>
 
 	<div class=content>
-		<h3>Спеціальність</h3>
+		<h3>Кафедра</h3>
 		<form action="ExecuteOperationServlet" method="POST">
 			<input type="hidden" name="tableName" value="${tableName}" />
 			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
 						<th>Назва</th>
-						<th>Код</th>
+						<th>Телефон</th>
 						<th>Факультет</th>
 						<th colspan="2">Операції</th>
 					</tr>
@@ -36,16 +36,12 @@
 				<tbody>
 					<c:forEach var="elem" items="${lst}">
 						<tr>
-							<td class="elem2"><input type="text" class="input"
-								name="nameSpec${elem.id}" value="${elem.name}" /></td>
-							<td class="elem"><input type="text" class="input"
-								name="codeSpec${elem.id}" value="${elem.code}" /></td>
-							<td class="elem1"><select size="1" id="ins"
-								name="nameFac${elem.id}">
-									<c:forEach var="fac" items="${lst1}">
-										<option value="${fac.id}">${fac.name}</option>
-									</c:forEach>
-							</select></td>
+							<td class="elem1"><input type="text" class="input"
+								name="nameKaf${elem.id}" value="${elem.name}" /></td>
+							<td class="elem4"><input type="text" class="input"
+								name="phoneKaf${elem.id}" value="${elem.phone}" /></td>
+							<td class="elem2"><input type="hidden"
+								name="facId${elem.id}" value="${elem.faculty.id}" />${elem.faculty}</td>
 							<td id="save"><button title="Оновити" value="${elem.id}"
 									type="submit" name="edit" class="but">
 									<img id="save-icon" alt="" src="images/update.png">
@@ -57,12 +53,15 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td class="add2"><input type="text" class="input"
-							name="nameSpec" /></td>
-						<td class="add1"><input type="text" class="input"
-							name="codeSpec" /></td>
-						<td><input type="hidden" value="${id}"
-							name="nameFac" />${name}</td>
+						<td class="add"><input type="text" class="input"
+							name="nameKaf" /></td>
+						<td class="add4"><input type="text" class="input"
+							name="phoneKaf" /></td>
+						<td class="elem2"><select size="1" name="nameFac">
+								<c:forEach var="fac" items="${lst1}">
+									<option value="${fac.id}">${fac.name}</option>
+								</c:forEach>
+						</select></td>
 						<td colspan="2" id="save"><button class="but" title="Додати"
 								type="submit" name="add">
 								<img id="save-icon" alt="" src="images/add.png">
@@ -70,8 +69,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" value="${id}" name="id" />
 		</form>
+
 	</div>
 	<div class="back">
 		<form action="BackServlet">
@@ -79,6 +78,8 @@
 				class="btn btn-primary">На головну</button>
 		</form>
 	</div>
+	
+	
 	<div id="footer">
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
@@ -91,15 +92,10 @@
 					for (var i = 0; i < q.length; i++) {
 						q[i].removeAttribute('required');
 					}
-					var a = document.getElementsByName("nameSpec" + this.value);
+					var a = document.getElementsByName("nameKaf" + this.value);
 					a[0].setAttribute('required', 'true');
 				}
 			}
-
-			var text1 = '${lst[0].faculty}';
-			$("select option").filter(function() {
-				return $(this).text() == text1;
-			}).attr('selected', true);
 		});
 	</script>
 </body>

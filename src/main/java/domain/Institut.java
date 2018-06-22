@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,8 +25,7 @@ public class Institut implements Serializable, IEntity {
 	@Transient
 	private final String tableName = "Institut";
 
-	// bi-directional many-to-one association to Faculty
-	@OneToMany(mappedBy = "institut", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "institut")
 	private List<Faculty> faculties;
 
 	public Institut(String name) {
@@ -108,5 +106,4 @@ public class Institut implements Serializable, IEntity {
 	public String toString() {
 		return this.name;
 	}
-
 }

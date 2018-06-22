@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,10 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-/**
- * The persistent class for the faculty database table.
- * 
- */
 @Entity
 @NamedQuery(name = "Faculty.findAll", query = "SELECT f FROM Faculty f ORDER BY f.id")
 public class Faculty implements Serializable, IEntity {
@@ -36,17 +31,14 @@ public class Faculty implements Serializable, IEntity {
 		this.institut = institut;
 	}
 
-	// bi-directional many-to-one association to Institut
 	@ManyToOne
 	@JoinColumn(name = "institutID")
 	private Institut institut;
 
-	// bi-directional many-to-one association to Kafedra
 	@OneToMany(mappedBy = "faculty")
 	private List<Kafedra> kafedras;
 
-	// bi-directional many-to-one association to Specialty
-	@OneToMany(mappedBy = "faculty", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "faculty")
 	private List<Specialty> specialties;
 
 	public Faculty() {

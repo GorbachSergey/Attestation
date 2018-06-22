@@ -21,31 +21,36 @@
 	</div>
 
 	<div class=content>
-		<h3>Спеціальність</h3>
+		<h3>Управління викладачами</h3>
 		<form action="ExecuteOperationServlet" method="POST">
 			<input type="hidden" name="tableName" value="${tableName}" />
 			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
-						<th>Назва</th>
-						<th>Код</th>
-						<th>Факультет</th>
+						<th>Прізвище</th>
+						<th>Ім'я</th>
+						<th>По батькові</th>
+						<th>Кафедра</th>
+						<th>Логін</th>
+						<th>Пароль</th>
 						<th colspan="2">Операції</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="elem" items="${lst}">
 						<tr>
-							<td class="elem2"><input type="text" class="input"
-								name="nameSpec${elem.id}" value="${elem.name}" /></td>
-							<td class="elem"><input type="text" class="input"
-								name="codeSpec${elem.id}" value="${elem.code}" /></td>
-							<td class="elem1"><select size="1" id="ins"
-								name="nameFac${elem.id}">
-									<c:forEach var="fac" items="${lst1}">
-										<option value="${fac.id}">${fac.name}</option>
-									</c:forEach>
-							</select></td>
+							<td class="elem3"><input type="text" class="input"
+								name="lastName${elem.id}" value="${elem.lastName}" /></td>
+							<td class="elem3"><input type="text" class="input"
+								name="firstName${elem.id}" value="${elem.firstName}" /></td>
+							<td class="elem3"><input type="text" class="input"
+								name="middleName${elem.id}" value="${elem.middleName}" /></td>
+							<td class="elem2"><input type="hidden"
+								name="kafId${elem.id}" value="${elem.kafedra.id}" />${elem.kafedra.name}</td>
+							<td class="elem3"><input type="text" class="input"
+								name="login${elem.id}" value="${elem.login}" /></td>
+							<td class="elem3"><input type="text" class="input"
+								name="password${elem.id}" value="${elem.password}" /></td>
 							<td id="save"><button title="Оновити" value="${elem.id}"
 									type="submit" name="edit" class="but">
 									<img id="save-icon" alt="" src="images/update.png">
@@ -57,12 +62,21 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td class="add2"><input type="text" class="input"
-							name="nameSpec" /></td>
-						<td class="add1"><input type="text" class="input"
-							name="codeSpec" /></td>
-						<td><input type="hidden" value="${id}"
-							name="nameFac" />${name}</td>
+						<td class="add3"><input type="text" class="input"
+							name="lastName" /></td>
+						<td class="add3"><input type="text" class="input"
+							name="firstName" /></td>
+						<td class="add3"><input type="text" class="input"
+							name="middleName" /></td>
+						<td class="elem2"><select size="1" name="nameKaf">
+								<c:forEach var="kaf" items="${lst1}">
+									<option value="${kaf.id}">${kaf.name}</option>
+								</c:forEach>
+						</select></td>
+						<td class="add3"><input type="text" class="input"
+							name="login" /></td>
+						<td class="add3"><input type="text" class="input"
+							name="password" /></td>
 						<td colspan="2" id="save"><button class="but" title="Додати"
 								type="submit" name="add">
 								<img id="save-icon" alt="" src="images/add.png">
@@ -70,8 +84,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" value="${id}" name="id" />
 		</form>
+
 	</div>
 	<div class="back">
 		<form action="BackServlet">
@@ -91,15 +105,18 @@
 					for (var i = 0; i < q.length; i++) {
 						q[i].removeAttribute('required');
 					}
-					var a = document.getElementsByName("nameSpec" + this.value);
+					var a = document.getElementsByName("firstName" + this.value);
 					a[0].setAttribute('required', 'true');
+					var b = document.getElementsByName("lastName" + this.value);
+					b[0].setAttribute('required', 'true');
+					var c = document.getElementsByName("middleName" + this.value);
+					c[0].setAttribute('required', 'true');
+					var d = document.getElementsByName("login" + this.value);
+					d[0].setAttribute('required', 'true');
+					var e = document.getElementsByName("password" + this.value);
+					e[0].setAttribute('required', 'true');
 				}
 			}
-
-			var text1 = '${lst[0].faculty}';
-			$("select option").filter(function() {
-				return $(this).text() == text1;
-			}).attr('selected', true);
 		});
 	</script>
 </body>

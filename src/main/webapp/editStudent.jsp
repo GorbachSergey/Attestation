@@ -13,44 +13,45 @@
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-<title>Редагувати</title>
+<title>ЧНТУ Атестація</title>
 </head>
 <body>
 	<div id="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
-
 	<div class=content>
-		<h3>Спеціальність</h3>
 		<form action="ExecuteOperationServlet" method="POST">
-			<input type="hidden" name="tableName" value="${tableName}" />
+		<input type="hidden" name="tableName" value="${tableName}" />
 			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
-						<th>Назва</th>
-						<th>Код</th>
-						<th>Факультет</th>
+						<th>Прізвище</th>
+						<th>Ім'я</th>
+						<th>По батькові</th>
+						<th>Група</th>
+						<th>Оцінка</th>
+						<th>Н/б</th>
 						<th colspan="2">Операції</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="elem" items="${lst}">
+					<c:forEach var="elem" items="${list}">
 						<tr>
 							<td class="elem2"><input type="text" class="input"
-								name="nameSpec${elem.id}" value="${elem.name}" /></td>
-							<td class="elem"><input type="text" class="input"
-								name="codeSpec${elem.id}" value="${elem.code}" /></td>
-							<td class="elem1"><select size="1" id="ins"
-								name="nameFac${elem.id}">
-									<c:forEach var="fac" items="${lst1}">
-										<option value="${fac.id}">${fac.name}</option>
-									</c:forEach>
-							</select></td>
-							<td id="save"><button title="Оновити" value="${elem.id}"
+								name="lastName${elem.key.id}" value="${elem.key.lastName}" /></td>
+							<td class="elem2"><input type="text" class="input"
+								name="firstName${elem.key.id}" value="${elem.key.firstName}" /></td>
+							<td class="elem2"><input type="text" class="input"
+								name="middleName${elem.key.id}" value="${elem.key.middleName}" /></td>
+							<td class="elem"><input type="hidden" class="input"
+								name="group" value="${elem.key.group.id}" />${elem.key.group.name}</td>
+							<td class="elem">${elem.value.mark}</td>
+							<td width="75px">${elem.value.countOfPass}</td>
+							<td id="save"><button title="Оновити" value="${elem.key.id}"
 									type="submit" name="edit" class="but">
 									<img id="save-icon" alt="" src="images/update.png">
 								</button></td>
-							<td id="save"><button title="Видалити" value="${elem.id}"
+							<td id="save"><button title="Видалити" value="${elem.key.id}"
 									type="submit" name="delete">
 									<img id="save-icon" alt="" src="images/delete.png">
 								</button></td>
@@ -58,11 +59,14 @@
 					</c:forEach>
 					<tr>
 						<td class="add2"><input type="text" class="input"
-							name="nameSpec" /></td>
-						<td class="add1"><input type="text" class="input"
-							name="codeSpec" /></td>
-						<td><input type="hidden" value="${id}"
-							name="nameFac" />${name}</td>
+							name="lastName" /></td>
+						<td class="add2"><input type="text" class="input"
+							name="firstName"/></td>
+						<td class="add2"><input type="text" class="input"
+							name="middleName"/></td>
+						<td><input type="hidden" value="${groupId}"
+							name="groupId" />${nameGroup}</td>
+						<td colspan="2" class="elem"></td>
 						<td colspan="2" id="save"><button class="but" title="Додати"
 								type="submit" name="add">
 								<img id="save-icon" alt="" src="images/add.png">
@@ -70,7 +74,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" value="${id}" name="id" />
 		</form>
 	</div>
 	<div class="back">
@@ -90,16 +93,16 @@
 				bt[i].onclick = function() {
 					for (var i = 0; i < q.length; i++) {
 						q[i].removeAttribute('required');
+						q[i].removeAttribute('pattern');
 					}
-					var a = document.getElementsByName("nameSpec" + this.value);
+					var a = document.getElementsByName("firstName" + this.value);
 					a[0].setAttribute('required', 'true');
+					var b = document.getElementsByName("lastName" + this.value);
+					b[0].setAttribute('required', 'true');
+					var c = document.getElementsByName("middleName" + this.value);
+					c[0].setAttribute('required', 'true');
 				}
 			}
-
-			var text1 = '${lst[0].faculty}';
-			$("select option").filter(function() {
-				return $(this).text() == text1;
-			}).attr('selected', true);
 		});
 	</script>
 </body>

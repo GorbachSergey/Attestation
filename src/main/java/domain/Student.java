@@ -12,10 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-/**
- * The persistent class for the student database table.
- * 
- */
 @Entity
 @NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s")
 public class Student implements Serializable, IEntity, Comparable<Student> {

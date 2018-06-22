@@ -14,10 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-/**
- * The persistent class for the subject database table.
- * 
- */
 @Entity
 @NamedQuery(name = "Subject.findAll", query = "SELECT s FROM Subject s")
 public class Subject implements Serializable, IEntity {
@@ -26,11 +22,16 @@ public class Subject implements Serializable, IEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private String name;
+
 	private int course;
 
 	@Transient
 	private final String tableName = "Subject";
+
+	@Transient
+	String str;
 
 	public Subject(String name, int course, Specialty specialty) {
 		super();
@@ -38,16 +39,13 @@ public class Subject implements Serializable, IEntity {
 		this.specialty = specialty;
 	}
 
-	// bi-directional many-to-one association to Mark
 	@OneToMany(mappedBy = "subject")
 	private List<Mark> marks;
 
-	// bi-directional many-to-one association to Specialty
 	@ManyToOne
 	@JoinColumn(name = "specialtyID")
 	private Specialty specialty;
 
-	// bi-directional many-to-many association to Teacher
 	@ManyToMany(mappedBy = "subjects")
 	private List<Teacher> teachers;
 
@@ -152,6 +150,10 @@ public class Subject implements Serializable, IEntity {
 		} else if (!specialty.equals(other.specialty))
 			return false;
 		return true;
+	}
+
+	public String getStr() {
+		return this.getCourse() + " курс, " + this.getSpecialty() + ", " + this.getName();
 	}
 
 	@Override

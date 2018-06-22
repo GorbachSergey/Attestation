@@ -19,42 +19,52 @@
 	<div id="header">
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
+
 	<div class=content>
-		<h3>Інститут</h3>
+		<h3>Залежність між викладачем та предметом</h3>
 		<form action="ExecuteOperationServlet" method="POST">
 			<input type="hidden" name="tableName" value="${tableName}" />
 			<table class="table table-condensed table-bordered">
 				<thead>
 					<tr>
-						<th>Назва</th>
-						<th colspan="2">Операції</th>
+						<th>Викладач</th>
+						<th>Предмет</th>
+						<th>Операції</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="elem" items="${lst}">
-						<tr>
-							<td class="elem1"><input type="text" class="input"
-								name="nameIns${elem.id}" value="${elem.name}" /></td>
-							<td id="save"><button title="Оновити" value="${elem.id}"
-									type="submit" name="edit" class="but">
-									<img id="save-icon" alt="" src="images/update.png">
-								</button></td>
-							<td id="save"><button title="Видалити" value="${elem.id}"
-									type="submit" name="delete">
-									<img id="save-icon" alt="" src="images/delete.png">
-								</button></td>
-						</tr>
+					<c:forEach var="teach" items="${lst}">
+						<c:forEach var="sub" items="${teach.subjects}">
+							<tr>
+								<td><input type="hidden" name="teacher${teach.id}"
+									value="${sub.id}" />${teach}</td>
+								<td>${sub.str}</td>
+								<td id="save"><button title="Видалити" value="${teach.id}"
+										type="submit" name="delete">
+										<img id="save-icon" alt="" src="images/delete.png">
+									</button></td>
+							</tr>
+						</c:forEach>
 					</c:forEach>
 					<tr>
-						<td class="add"><input type="text" class="input"
-							name="nameIns" /></td>
-						<td colspan="2" id="save"><button class="but" title="Додати"
+						<td><select size="1" name="teacher">
+								<c:forEach var="teach" items="${lst}">
+									<option value="${teach.id}">${teach}</option>
+								</c:forEach>
+						</select></td>
+						<td><select size="1" name="subject">
+								<c:forEach var="sub" items="${lst1}">
+									<option value="${sub.id}">${sub.str}</option>
+								</c:forEach>
+						</select></td>
+						<td id="save"><button class="but" title="Додати"
 								type="submit" name="add">
 								<img id="save-icon" alt="" src="images/add.png">
 							</button></td>
 					</tr>
 				</tbody>
 			</table>
+			<input type="hidden" value="${id}" name="id" />
 		</form>
 	</div>
 	<div class="back">
@@ -66,20 +76,5 @@
 	<div id="footer">
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var q = document.getElementsByClassName("input");
-			var bt = document.getElementsByClassName("but");
-			for (var i = 0; i < bt.length; i++) {
-				bt[i].onclick = function() {
-					for (var i = 0; i < q.length; i++) {
-						q[i].removeAttribute('required');
-					}
-					var a = document.getElementsByName("nameIns" + this.value);
-					a[0].setAttribute('required', 'true');
-				}
-			}
-		});
-	</script>
 </body>
 </html>

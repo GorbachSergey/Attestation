@@ -56,7 +56,6 @@ public class GenericDAO<T extends IEntity> implements IGenericDAO<T> {
 			e.printStackTrace();
 		}
 		return res;
-
 	}
 
 	public List<T> getAll() {

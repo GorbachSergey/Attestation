@@ -16,7 +16,9 @@
 <title>ЧНТУ Атестація</title>
 </head>
 <body>
-	<div id="header"></div>
+	<div id="header">
+	<jsp:include page="header.jsp"></jsp:include>
+	</div>
 	<div class=content>
 		<form action="AddMarkServlet" method="POST">
 			<table class="table table-condensed table-bordered">
@@ -53,6 +55,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</form>
+	</div>
+	<div class="back">
+		<form action="BackServlet">
+			<button type="submit" name="back" value="Institut"
+				class="btn btn-primary">На головну</button>
 		</form>
 	</div>
 	<div id="footer">

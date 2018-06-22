@@ -18,20 +18,22 @@
 		<jsp:include page="header.jsp"></jsp:include>
 	</div>
 	<div class=content>
+		<h3>${tableNameRU}</h3>
 		<form action="SelectTableServlet" method="POST">
 			<c:forEach var="elem" items="${list}">
 				<div>
 					<button class="button" style="vertical-align: middle" type="submit"
-						value="${elem.tableName}|${elem.id}" name="elemId">
+						value="${tableName}|${elem.id}" name="elemId">
 						<span>${elem}</span>
 					</button>
 				</div>
 			</c:forEach>
 		</form>
-		<c:if test="${user.lastName eq 'admin'}">
+		
+		<c:if test="${user.lastName eq 'admin' and tableName ne 'Course'}">
 			<form action="SelectTableForEditServlet" method="POST">
-				<input type="hidden" name="tableName" value="${list[0].tableName}" />
-				<input type="hidden" name="id" value="${list[0].id}" />
+				<input type="hidden" name="tableName" value="${tableName}" /> 
+				<input type="hidden" name="id" value="${id}" />
 				<div>
 					<button class="buttonEdit" style="vertical-align: middle"
 						name="edit">
